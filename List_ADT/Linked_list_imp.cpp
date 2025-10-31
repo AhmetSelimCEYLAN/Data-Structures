@@ -20,6 +20,12 @@ class linked
 			first=nw;
 			count=1;
 		}
+		linked(node<T> *nw, int co)
+		{
+			first=nw;
+			count=co;
+			
+		}
 		
 		T get(int index)
 		{
@@ -101,7 +107,7 @@ class linked
 		}
 		
 		int get_size() {return count;}
-		
+		node<T> get_first() 	{return first;}
 		void print()
 		{
 			if(!first)
@@ -116,6 +122,22 @@ class linked
 				cout<<tmp->stored<<endl;
 			}
 			cout<<"Bu hikaye de burada biter";
+		}
+		
+		void reverse()
+		{
+		node<T> *tmp,*cur,*prev;
+		cur=first;
+		prev=NULL;
+		for(;cur;)
+		{
+			tmp=cur->next;
+			cur->next=prev;
+			
+			prev=cur;
+			cur=tmp;
+		}
+		first=prev;
 		}
 };
 
@@ -181,5 +203,13 @@ int main()
 			ptr=(ptr->get_next());
 		}
 	}
+	node<int> m1(1,NULL),m2(2,NULL),m3(3,NULL);
+	m1.set_next(&m2);m2.set_next(&m3);
+	linked<int> k(&m1,3);
+	k.print();
+	cout<<endl<<"Þimdik reverse edeceðim"<<endl;
+	k.reverse();
+	k.print();
+	return 0;
 	
 }
